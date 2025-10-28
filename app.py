@@ -1,35 +1,26 @@
 from flask import Flask, request, jsonify
 import pickle
-import numpy as np
 
 app = Flask(__name__)
 
-with open("sentiment_model.pkl", "rb") as f:
+with open('sentiment_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
-with open("vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
+with open('tfidf_vectorizer.pkl', 'rb') as f:
+    tfidf = pickle.load(f)
 
 @app.route('/')
 def home():
-    return "✅ Amazon Fine Food Reviews Sentiment API is running!"
+    return "✅ Flask Sentiment Analysis API is running. Use POST /predict to test."
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    try:
-        data = request.get_json()
-        review = data.get("review", "")
+    data = request.get_json()
+    text = data['text']
+    text_tfidf = tfidf.transform([text])
+    prediction = model.predict(text_tfidf)[0]
+    sentiment = 'Positive' if prediction == 1 else 'Negative'
+    return jsonify({'sentiment': sentiment})
 
-        if not review:
-            return jsonify({"error": "No review text provided."}), 400
-
-        text_vector = vectorizer.transform([review])
-        prediction = model.predict(text_vector)[0]
-        sentiment = "Positive" if prediction == 1 else "Negative"
-
-        return jsonify({"review": review, "sentiment": sentiment})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
