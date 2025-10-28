@@ -79,6 +79,19 @@ The dataset contains customer reviews of fine foods from Amazon. Each review inc
 
 ---
 
+## Results and Output
+
+### Model Training Results
+![Model Accuracy](D:\bdml-lab\output\accuracy.png)
+
+### working
+![landing](D:\bdml-lab\output\landing.png)
+![negative](D:\bdml-lab\output\negative comment.png)
+![negative-result](D:\bdml-lab\output\negative output.png)
+![positive](D:\bdml-lab\output\positive comment.png)
+![positive-result](D:\bdml-lab\output\positive result.png)
+---
+
 ## **Model Development**
 
 **Libraries Used:**
