@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Result | Sentiment Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Sentiment Analysis Result</h1>
+    <p class="analyzed-text">"{{ text }}"</p>
+    <h2 style="color: {{ color }};">{{ sentiment }}</h2>
+    <a href="/">← Analyze another text</a>
+  </div>
+</body>
+</html>

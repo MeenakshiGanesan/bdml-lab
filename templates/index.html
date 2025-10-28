@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sentiment Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>💬 Sentiment Analyzer</h1>
+    <p>Type or paste any text below to find its emotional tone.</p>
+    
+    <form action="/analyze" method="POST">
+      <textarea name="text" placeholder="Enter your text here..." required></textarea>
+      <button type="submit">Analyze</button>
+    </form>
+  </div>
+</body>
+</html>
